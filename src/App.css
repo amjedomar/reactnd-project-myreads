@@ -10,6 +10,13 @@ body, .app {
   background: white;
 }
 
+/* general */
+.subtitle {
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+}
+
 /* main page */
 
 .list-books-title {
@@ -53,11 +60,12 @@ body, .app {
   bottom: 25px;
 }
 
-.open-search button {
+.open-search a {
   display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 1px solid #60ac5d;
   background: #2e7d32;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
@@ -111,6 +119,7 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  background-color: #efefef;
 }
 
 button:active {
