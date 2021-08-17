@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import {Route} from 'react-router-dom';
 import ListBooks from './components/ListBooks';
+import SearchBooks from './components/SearchBooks';
 import * as BooksAPI from './apis/BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
     books: [],
     isLoading: true
-  }
+  };
 
   componentDidMount() {
     const getAll = () => {
@@ -18,7 +19,7 @@ class BooksApp extends React.Component {
           isLoading: false
         });
       }).catch(() => {
-        setTimeout(getAll, 2000);
+        setTimeout(getAll, 3000);
       });
     };
 
@@ -29,14 +30,14 @@ class BooksApp extends React.Component {
     this.setState(prevState => {
       const books = [...prevState.books];
       const bookIndex = books.findIndex(b => b.id === book.id);
-      if (typeof bookIndex !== 'undefined') books.splice(bookIndex, 1);
-      books.push({...book, shelf});
+      if (bookIndex > -1) books.splice(bookIndex, 1);
+      if (shelf !== 'none') books.push({...book, shelf});
       return { books };
     });
 
     const update = () => {
       BooksAPI.update(book, shelf).catch(() => {
-        setTimeout(update, 2000);
+        setTimeout(update, 3000);
       });
     };
 
@@ -52,6 +53,10 @@ class BooksApp extends React.Component {
           <Route exact path="/" render={() => (
             <ListBooks books={this.state.books} onShelfChange={this.handleShelfChange} />
           )} />
+
+          <Route exact path="/search" render={() => (
+            <SearchBooks books={this.state.books} onShelfChange={this.handleShelfChange} />
+          )} />
         </>
       );
     }
@@ -64,4 +69,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;

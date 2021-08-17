@@ -13,7 +13,7 @@ const Book = props => {
       <div className="book-top">
         <div
           className="book-cover"
-          style={{ width: 128, height: 192, backgroundImage }}
+          style={{width: 128, height: 192, backgroundImage}}
         />
 
         <BookSelfChanger
